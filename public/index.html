@@ -3,19 +3,26 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Boxes Of Fruit Brain Teaser</title>
+  <link rel="stylesheet" href="./css/materialize/css/materialize.min.css">
   <link rel='stylesheet' href='./css/style.css'>
   <script src="./js/angular.min.js"></script>
   <script src="./js/angular-route.min.js"></script>
 </head>
-<body>
-  <h1>Testing Boxes of Fruit</h1><br>
+<body ng-controller='mainCtrl'>
+  <div id='mainContainer' class='container-fluid'>
+    <h1>Styku Brain Teaser</h1>
+    <h3>Boxes of Fruit</h3><br>
+    <img src='./assets/images/Apple.png' alt='APPLE' />
+    <img src='./assets/images/Orange.png' alt='ORANGE' /><br><br>
 
-  <img src='./assets/images/Apple.png' alt='APPLE' /><br>
-  <img src='./assets/images/Orange.png' alt='ORANGE' /><br>
-
-  <div ng-view></div>
+    <div ng-view class='container-fluid'></div>
+  </div>
+    <footer class='container-fluid'>
+      <p>Developer: Justin Samuels &copy;2017</p>
+    </footer>
 
   <script src="./js/jquery-3.2.1.min.js"></script>
+  <script src="./css/materialize/js/materialize.min.js"></script>
   <script src="./js/app.js"></script>
 </body>
 </html>
