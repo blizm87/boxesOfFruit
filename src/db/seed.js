@@ -10,6 +10,7 @@ var devAdmin = new authUser({
     gamesPlayed: 1,
     gamesWon: 1,
     gameRecords: [{
+      recordId: 0,
       submittedAnswers: ['apple', 'orange', 'mixed'],
       correctAnswers: ['apple', 'orange', 'mixed']
     }]

@@ -33,7 +33,7 @@
           templateUrl: '../partials/index.html',
           controller: 'indexCtrl'
         })
-        .when('/active', {
+        .when('/game', {
           templateUrl: '../partials/game.html',
           controller: 'gameCtrl'
         })

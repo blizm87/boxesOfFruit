@@ -4,6 +4,7 @@ body {
 
 #mainContainer {
   text-align: center;
+  padding-bottom: 6.75em;
 }
 
 #partialIndexContainer {
@@ -11,7 +12,7 @@ body {
 }
 
 #cardContainer {
-  width: 500px;
+  width: 400px;
   margin: 0 auto;
 }
 
@@ -20,7 +21,7 @@ body {
 }
 
 #oauthLinkContainer>div {
-  width: 70%;
+  width: 60%;
   margin: 0 auto;
 }
 
