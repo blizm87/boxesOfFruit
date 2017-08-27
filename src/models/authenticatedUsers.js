@@ -6,6 +6,14 @@ var memberSchema = new mongoose.Schema({
   'myId': String,
   'submittedAnswers': [],
   'correctAnswers': [],
+  'score': {
+    gamesPlayed: Number,
+    gamesWon: Number,
+    gameRecord: {
+      submittedAnswers: [],
+      correctAnswers: []
+    }
+  },
   createdAt: { type: Date, default: Date.now }
 });
 
