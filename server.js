@@ -8,7 +8,7 @@ const methodOverride = require('method-override');
 const app = express();
 
 // CONFIG
-// require('./src/db/config.js');
+require('./src/db/config.js');
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, './public')));
 app.use(methodOverride('_method'));
