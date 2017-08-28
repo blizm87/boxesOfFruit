@@ -1,17 +1,17 @@
 <div id='partialGameContainer' class='container-fluid'>
   <section class='row'>
     <div class='container-fluid' id='instructionBtnContainer'>
-      <button class='btn waves-effect waves-light pulse grey lighten-4 red-text' id='instructionBtn'>Instructions</button>
+      <button class='btn waves-effect waves-blue pulse grey lighten-4 red-text' id='instructionBtn'>Instructions</button>
     </div>
     <div class='col s12 m12' id='instructionContent'>
       <div class='container z-depth-3' id='problemStatement'>
-        <p><span style='font-weight: bold;'>Problem:</span> There are three boxes of fruit. One box is full of Oranges only.
+        <p><span class='instrSpan'>Problem:</span> There are three boxes of fruit. One box is full of Oranges only.
           A second box is full of Apples only. A third box is a random mix of both.
           But all three boxes are mislabelled. For example, the box labelled "Apples"
           may very well be only oranges, or have both oranges and apples.
         </p>
         <p>
-          <span style='font-weight: bold;'>Objective:</span> Determine the correct
+          <span class='instrSpan'>Objective:</span> Determine the correct
             contents of all three buckets by revealing one fruit only from one bucket only.
             If you choose correctly you will be able to determine the correct contents
             of all three buckets.
@@ -23,26 +23,46 @@
   </section>
 
   <section class='row'>
-    <div class='col s12 m12'>
-      <div id='bucketContainer'>
-        <div class='bucketInd'>
-          <img src="../assets/images/bucket.png" alt="bucket" class='responsive-img'>
-        </div>
-        <div class='bucketInd'>
-          <img src="../assets/images/bucket.png" alt="bucket" class='responsive-img'>
-        </div>
-        <div class='bucketInd'>
-          <img src="../assets/images/bucket.png" alt="bucket" class='responsive-img'>
-        </div>
+    <div class='col s4 m4'>
+      <div class='container-fluid' id='playerScoreContainer'>
+        <h3 style='text-decoration: underline;'>Player Score</h3>
       </div>
     </div>
-  </section>
-
-  <section class='row'>
-    <div class='col s12 m12'>
-      <div class='container' id='playerScoreContainer'>
-        <h3>Player Score</h3>
-      </div>
+    <div class='col s4 m4'>
+      <form>
+        <div id='fruitContainer'>
+          <canvas id='mixedFruitCanvas' width='80px' height='42px'></canvas>
+          <img src='./assets/images/Apple.png' alt='APPLE' class='fruitSelectors' />
+          <div id='mixedFruitContainer'></div>
+          <img src='./assets/images/Orange.png' alt='ORANGE' class='fruitSelectors' />
+        </div>
+        <div id='bucketContainer'>
+          <div class='bucketInd'>
+            <img src="../assets/images/bucket.png" alt="bucket" class='responsive-img bucket'>
+            <h5>Apples</h5>
+          </div>
+          <div class='bucketInd'>
+            <img src="../assets/images/bucket.png" alt="bucket" class='responsive-img bucket'>
+            <h5>Oranges</h5>
+          </div>
+          <div class='bucketInd'>
+            <img src="../assets/images/bucket.png" alt="bucket" class='responsive-img bucket'>
+            <h5>Mixed</h5>
+          </div>
+        </div>
+        <div class='row'  style='border: 1px solid black;'>
+          <div class='col s4 m4 offset-s4 offset-m4'>
+            <div id='submissionContainer'>
+              <p>*Note: Enter email address to submit.</p>
+              <div class="input-field">
+                <input id="email" type="email" class="validate black-text" required>
+                <label for="email" class='teal-text'>Email</label>
+              </div>
+              <button class='btn waves-effect' type='submit'>Submit Answer</button>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
   </section>
 </div>

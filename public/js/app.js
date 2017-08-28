@@ -27,6 +27,12 @@
       let paramRes = urlParams.split('=')[1];
       let instrBtn = $('#instructionBtn');
       let instrCont = $('#instructionContent');
+      let mixedFruitCont = $('#mixedFruitContainer');
+      let mixedFruit = document.createElement('img');
+      let canvas = document.getElementById('mixedFruitCanvas');
+      let context = canvas.getContext('2d');
+      let img1 = new Image();
+      let img2 = new Image();
 
       $(document).ready(function(){
         $('.tooltipped').tooltip({delay: 50});
@@ -34,7 +40,18 @@
 
       instrBtn.on('click', function() {
         instrCont.slideToggle();
-      })
+      });
+
+      img1.src = "../assets/images/Apple.png";
+      context.drawImage(img1, 0, 1);
+
+      img2.src = "../assets/images/Orange.png";
+      context.drawImage(img2, 40, 0);
+
+      mixedFruit.src = canvas.toDataURL();
+      mixedFruit.width = '135';
+      mixedFruit.classList.add('responsive-img');
+      mixedFruitCont.append(mixedFruit);
 
       $http
         .get(`http://127.0.0.1:3000/members?profileId=${paramRes}`)
