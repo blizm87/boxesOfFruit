@@ -69,15 +69,30 @@ body {
           font-size: 18px;
         }
 
-        #bucketContainer {
-          margin-top: 3em;
-          margin-left: auto;
-          margin-right: auto;
-          width: 30%;
-          display: flex;
-          align-items: flex-start;
-          justify-content: space-between;
-        }
+            #instructionBtnContainer {
+              display: flex;
+              align-items: flex-start;
+              justify-content: center;
+            }
+
+                #instructionBtn {
+                  margin-top: 1em;
+                }
+
+                #instructionContent {
+                  margin-top: 1em;
+                  display: none;
+                }
+
+                #bucketContainer {
+                  margin-top: 3em;
+                  margin-left: auto;
+                  margin-right: auto;
+                  width: 30%;
+                  display: flex;
+                  align-items: flex-start;
+                  justify-content: space-between;
+                }
 
             .bucketInd>img {
               width: 100px;

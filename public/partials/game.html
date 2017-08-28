@@ -1,13 +1,23 @@
 <div id='partialGameContainer' class='container-fluid'>
   <section class='row'>
-    <button class='btn waves-effect waves-light pulse grey lighten-4 red-text'>Instructions</button>
-    <div class='col s12 m12 dropdown-content'>
-      <div class='container-fluid z-depth-3' id='problemStatement'>
+    <div class='container-fluid' id='instructionBtnContainer'>
+      <button class='btn waves-effect waves-light pulse grey lighten-4 red-text' id='instructionBtn'>Instructions</button>
+    </div>
+    <div class='col s12 m12' id='instructionContent'>
+      <div class='container z-depth-3' id='problemStatement'>
         <p><span style='font-weight: bold;'>Problem:</span> There are three boxes of fruit. One box is full of Oranges only.
           A second box is full of Apples only. A third box is a random mix of both.
           But all three boxes are mislabelled. For example, the box labelled "Apples"
           may very well be only oranges, or have both oranges and apples.
         </p>
+        <p>
+          <span style='font-weight: bold;'>Objective:</span> Determine the correct
+            contents of all three buckets by revealing one fruit only from one bucket only.
+            If you choose correctly you will be able to determine the correct contents
+            of all three buckets.
+        </p>
+        <a class="btn tooltipped" data-position="right" data-delay="50"
+          data-tooltip='Hint: The buckets are mislabelled, so remember that the "apples" bucket cannot contain apples.'>Hint!</a>
       </div>
     </div>
   </section>

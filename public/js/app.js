@@ -25,6 +25,17 @@
       console.log('I am the game controller')
       let urlParams = window.location.href.split('?')[1];
       let paramRes = urlParams.split('=')[1];
+      let instrBtn = $('#instructionBtn');
+      let instrCont = $('#instructionContent');
+
+      $(document).ready(function(){
+        $('.tooltipped').tooltip({delay: 50});
+      });
+
+      instrBtn.on('click', function() {
+        instrCont.slideToggle();
+      })
+
       $http
         .get(`http://127.0.0.1:3000/members?profileId=${paramRes}`)
         .then(function(response){
