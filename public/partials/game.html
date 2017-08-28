@@ -23,44 +23,50 @@
   </section>
 
   <section class='row'>
-    <div class='col s4 m4'>
+    <div class='col s12 m4'>
       <div class='container-fluid' id='playerScoreContainer'>
-        <h3 style='text-decoration: underline;'>Player Score</h3>
+        <h3 style='text-decoration: underline;'>Player Details</h3>
+        <div class='container-fluid'>
+          <h4>Player: {{player.fullName}}</h4>
+          <div class='container-fluid'>
+            <h5>Games Played: {{player.score.gamesPlayed}}</h5>
+            <h5>Games Won: {{player.score.gamesWon}}</h5>
+          </div>
+          <div class='container-fluid' id='historyBtnContainer'>
+            <button class='btn waves-effect waves-teal grey lighten-3 black-text'>Score History</button>
+          </div>
+        </div>
       </div>
     </div>
-    <div class='col s4 m4'>
+    <div class='col s12 m4'>
       <form>
         <div id='fruitContainer'>
           <canvas id='mixedFruitCanvas' width='80px' height='42px'></canvas>
-          <img src='./assets/images/Apple.png' alt='APPLE' class='fruitSelectors' />
+          <img src='./assets/images/Apple.png' alt='APPLE' class='fruitSelectors' draggable='true' id='apple'>
           <div id='mixedFruitContainer'></div>
-          <img src='./assets/images/Orange.png' alt='ORANGE' class='fruitSelectors' />
+          <img src='./assets/images/Orange.png' alt='ORANGE' class='fruitSelectors' draggable='true' id='orange'>
         </div>
         <div id='bucketContainer'>
           <div class='bucketInd'>
-            <img src="../assets/images/bucket.png" alt="bucket" class='responsive-img bucket'>
-            <h5>Apples</h5>
+            <img src="../assets/images/bucket.png" alt="bucket" class='responsive-img bucket' draggable='false'>
+            <h5>{{bucketOne}}</h5>
           </div>
           <div class='bucketInd'>
-            <img src="../assets/images/bucket.png" alt="bucket" class='responsive-img bucket'>
-            <h5>Oranges</h5>
+            <img src="../assets/images/bucket.png" alt="bucket" class='responsive-img bucket' draggable='false'>
+            <h5>{{bucketTwo}}</h5>
           </div>
           <div class='bucketInd'>
-            <img src="../assets/images/bucket.png" alt="bucket" class='responsive-img bucket'>
-            <h5>Mixed</h5>
+            <img src="../assets/images/bucket.png" alt="bucket" class='responsive-img bucket' draggable='false'>
+            <h5>{{bucketThree}}</h5>
           </div>
         </div>
-        <div class='row'  style='border: 1px solid black;'>
-          <div class='col s4 m4 offset-s4 offset-m4'>
-            <div id='submissionContainer'>
-              <p>*Note: Enter email address to submit.</p>
-              <div class="input-field">
-                <input id="email" type="email" class="validate black-text" required>
-                <label for="email" class='teal-text'>Email</label>
-              </div>
-              <button class='btn waves-effect' type='submit'>Submit Answer</button>
-            </div>
+        <div class='container-fluid' id='submissionContainer'>
+          <p>*Note: Enter email address to submit.</p>
+          <div class="input-field">
+            <input id="email" type="email" class="validate black-text" required>
+            <label for="email" class='teal-text'>Email</label>
           </div>
+          <button class='btn waves-effect' type='submit'>Submit Answer</button>
         </div>
       </form>
     </div>

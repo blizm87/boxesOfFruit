@@ -5,7 +5,7 @@ html,body {
 
 body {
   margin-top: 0;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   background-color: lavender;
 }
 
@@ -63,7 +63,7 @@ body {
                     }
 
     #partialGameContainer {
-      border: 1px solid black;
+      /*border: 1px solid black;*/
     }
 
         #problemStatement {
@@ -93,61 +93,69 @@ body {
                       font-size: 20px;
                     }
 
-                #fruitContainer {
-                  margin-left: auto;
-                  margin-right: auto;
-                  display: flex;
-                  align-items: flex-start;
-                  justify-content: space-between;
-                }
-
-                    .fruitSelectors {
-                      width: 70px;
-                    }
-
-                    #mixedFruitCanvas {
-                      /*width: 70px;*/
-                      display: none;
-                    }
-
-                #bucketContainer {
-                  margin-top: 3em;
-                  margin-left: auto;
-                  margin-right: auto;
-                  display: flex;
-                  align-items: flex-start;
-                  justify-content: space-between;
-                }
-
-                    .bucketInd {
-                      text-align: center;
-                    }
-
-                        .bucket {
-                          width: 100px;
-                        }
-
-                            .bucket:hover {
-                              cursor: pointer;
-                            }
-
-                #submissionContainer {
-                  text-align: center;
-                  padding-bottom: .5em;
-                }
-
-                    #submissionContainer>p {
-                      text-align: center;
-                    }
-
         #playerScoreContainer {
-          text-align: center;
+          padding-left: 2em;
+          padding-right: 2em;
         }
 
             #playerScoreContainer>h3 {
+              text-align: center;
               margin-top: 0;
             }
 
+                #historyBtnContainer {
+                  margin-top: 2em;
+                  display: flex;
+                  align-items: flex-start;
+                  justify-content: center;
+                }
+
+        #fruitContainer {
+          margin-left: auto;
+          margin-right: auto;
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+        }
+
+            .fruitSelectors {
+              width: 70px;
+            }
+
+            #mixedFruitCanvas {
+              display: none;
+            }
+
+        #bucketContainer {
+          margin-top: 3em;
+          margin-left: auto;
+          margin-right: auto;
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+        }
+
+            .bucketInd {
+              text-align: center;
+            }
+
+                .bucket {
+                  width: 100px;
+                }
+
+                    .bucket:hover {
+                      cursor: pointer;
+                    }
+
+        #submissionContainer {
+          margin-top: 2.6em;
+          padding-bottom: .75em;
+          text-align: center;
+        }
+
+            #submissionContainer>p {
+              text-align: center;
+            }
 
 footer {
   width: 100%;
