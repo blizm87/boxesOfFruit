@@ -23,7 +23,15 @@
 
     function gameCtrl($scope, $http, $timeout){
       console.log('I am the game controller')
-
+      let urlParams = window.location.href.split('?')[1];
+      let paramRes = urlParams.split('=')[1];
+      $http
+        .get(`http://127.0.0.1:3000/members?profileId=${paramRes}`)
+        .then(function(response){
+          console.log(response)
+        }, function(err){
+          console.log(err)
+        })
     } //  END GAMECTRL -  CONTROLLER
 
     //  ANGULAR ROUTE HANDLER SECTION

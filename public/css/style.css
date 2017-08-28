@@ -1,36 +1,97 @@
+html,body {
+  width: 100%;
+  height: 100%;
+}
+
 body {
+  margin-top: 0;
+  border: 1px solid black;
   background-color: lavender;
 }
 
-#mainContainer {
-  text-align: center;
-  padding-bottom: 6.75em;
-}
+    header {
+      padding-bottom: 1em;
+      text-align: center;
+    }
 
-#partialIndexContainer {
+        header>h2 {
+          margin-top: 0;
+          padding-top: .6em;
+        }
 
-}
+        #headerBackImg {
+          left: 0;
+          width: 100%;
+          height: 14em;
+          position: absolute;
+          filter: blur(2px);
+          z-index: -1;
+        }
 
-#cardContainer {
-  width: 400px;
-  margin: 0 auto;
-}
+        #headerOverlay {
+          left: 0;
+          width: 100%;
+          height: 14em;
+          position: absolute;
+          z-index: -2;
+        }
 
-#oauthLinkContainer {
+    #partialIndexContainer {
 
-}
+    }
 
-#oauthLinkContainer>div {
-  width: 60%;
-  margin: 0 auto;
-}
+        #cardContainer {
+          width: 400px;
+          margin: 0 auto;
+        }
 
-#oauthLinkContainer>div>a {
-  margin: 0 auto;
-}
+            #oauthLinkContainer {
+
+            }
+
+                #oauthLinkContainer>div {
+                  width: 60%;
+                  margin: 0 auto;
+                }
+
+                    #oauthLinkContainer>div>a {
+                      margin: 0 auto;
+                    }
+
+    #partialGameContainer {
+      border: 1px solid black;
+    }
+
+        #problemStatement {
+          background-color: white;
+          padding: 1.5em;
+          border-radius: 15px;
+          font-size: 18px;
+        }
+
+        #bucketContainer {
+          margin-top: 3em;
+          margin-left: auto;
+          margin-right: auto;
+          width: 30%;
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+        }
+
+            .bucketInd>img {
+              width: 100px;
+            }
+
+        #playerScoreContainer {
+          text-align: center;
+        }
+
 
 footer {
   width: 100%;
+  position: absolute;
+  bottom: 0;
   padding-top: .5em;
   padding-bottom: .5em;
   background-color: teal;

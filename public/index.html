@@ -9,14 +9,19 @@
   <script src="./js/angular-route.min.js"></script>
 </head>
 <body ng-controller='mainCtrl'>
-  <div id='mainContainer' class='container-fluid'>
-    <h1>Styku Brain Teaser</h1>
-    <h3>Boxes of Fruit</h3><br>
+  <header class='white-text'>
+    <img src="../assets/wallpapers/mindArt1.jpg" alt='mindArt' id='headerBackImg'>
+    <img src="../assets/wallpapers/mindArt1.jpg" alt='mindArt' id='headerOverlay'>
+    <h2>Styku Brain Teaser</h2>
+    <h5>Boxes of Fruit</h5>
     <img src='./assets/images/Apple.png' alt='APPLE' />
-    <img src='./assets/images/Orange.png' alt='ORANGE' /><br><br>
+    <img src='./assets/images/Orange.png' alt='ORANGE' />
+  </header>
 
+  <div id='mainContainer' class='container-fluid'>
     <div ng-view class='container-fluid'></div>
   </div>
+
   <footer class='container-fluid'>
     <p>Developer: Justin Samuels &copy;2017</p>
   </footer>
