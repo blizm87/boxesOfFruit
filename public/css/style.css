@@ -103,6 +103,19 @@ body {
               margin-top: 0;
             }
 
+            #gameRecords {
+              width: 50%;
+              margin-left: 1.5em;
+            }
+
+                #gamesPlayedTally {
+                  float: right;
+                }
+
+                #gamesWonTally {
+                  float: right;
+                }
+
                 #historyBtnContainer {
                   margin-top: 2em;
                   display: flex;

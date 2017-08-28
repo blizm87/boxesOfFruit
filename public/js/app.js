@@ -31,12 +31,14 @@
       let mixedFruit = document.createElement('img');
       let singleFruit = document.querySelectorAll('.fruitSelectors');
       let bucket = document.querySelectorAll('.bucket');
+      let bucketCont = document.querySelector('#bucketContainer');
       let canvas = document.getElementById('mixedFruitCanvas');
       let context = canvas.getContext('2d');
       let img1 = new Image();
       let img2 = new Image();
       let fruitTypes = ['Apples', 'Oranges', 'Mixed'];
       let bucketArr = [];
+      let bucketHintTry = 0;
 
       $(document).ready(function(){
         $('.tooltipped').tooltip({delay: 50});
@@ -114,6 +116,26 @@
         }
       });
     // BUCKET DROP FEATURE END
+
+    // BUCKET HINT FEATURE
+      bucketCont.addEventListener('click', function(ev) {
+        console.log(ev.target.getAttribute('class'))
+        if(ev.target.getAttribute('class') === 'responsive-img bucket') {
+          if(bucketHintTry === 0){
+            bucketHintTry += 1;
+            let aTag = document.createElement('a');
+            aTag.setAttribute('class', 'btn tooltipped');
+            aTag.setAttribute('data-position', 'right');
+            aTag.setAttribute('data-delay', '50');
+            aTag.setAttribute('data-tooltip', 'testing');
+
+        // <a class="btn tooltipped" data-position="right" data-delay="50"
+        // data-tooltip='Hint: The buckets are mislabelled, so remember that the "apples"
+        // bucket cannot contain apples.'>Hint!</a>
+          }
+        }
+      })
+
       $http
         .get(`http://127.0.0.1:3000/members?profileId=${paramRes}`)
         .then(function(response){

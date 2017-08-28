@@ -28,9 +28,9 @@
         <h3 style='text-decoration: underline;'>Player Details</h3>
         <div class='container-fluid'>
           <h4>Player: {{player.fullName}}</h4>
-          <div class='container-fluid'>
-            <h5>Games Played: {{player.score.gamesPlayed}}</h5>
-            <h5>Games Won: {{player.score.gamesWon}}</h5>
+          <div class='container-fluid' id='gameRecords'>
+            <h5>Games Played: <span id='gamesPlayedTally'>{{player.score.gamesPlayed}}</span></h5>
+            <h5>Games Won: <span id='gamesWonTally'>{{player.score.gamesWon}}</span></h5>
           </div>
           <div class='container-fluid' id='historyBtnContainer'>
             <button class='btn waves-effect waves-teal grey lighten-3 black-text'>Score History</button>
