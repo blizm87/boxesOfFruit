@@ -25,9 +25,9 @@
       console.log('I am the game controller')
       let urlParams = window.location.href.split('?')[1];
       let paramRes = urlParams.split('=')[1];
-      let instrBtn = $('#instructionBtn');
-      let instrCont = $('#instructionContent');
-      let mixedFruitCont = $('#mixedFruitContainer');
+      let $instrBtn = $('#instructionBtn');
+      let $instrCont = $('#instructionContent');
+      let $mixedFruitCont = $('#mixedFruitContainer');
       let mixedFruit = document.createElement('img');
       let singleFruit = document.querySelectorAll('.fruitSelectors');
       let bucket = document.querySelectorAll('.bucket');
@@ -36,30 +36,67 @@
       let context = canvas.getContext('2d');
       let img1 = new Image();
       let img2 = new Image();
-      let fruitTypes = ['Apples', 'Oranges', 'Mixed'];
+      let fruitTypes = ['Apple', 'Orange', 'Mixed'];
       let bucketArr = [];
       let bucketHintTry = 0;
-
+      let $form = $('form');
+      let $emailInput = $('#email');
       $(document).ready(function(){
         $('.tooltipped').tooltip({delay: 50});
       });
 
-      instrBtn.on('click', function() {
-        instrCont.slideToggle();
+      $instrBtn.on('click', function() {
+        $instrCont.slideToggle();
       });
 
+    // RETREIVE PROFILE DATA
+      $http
+        .get(`http://127.0.0.1:3000/members?profileId=${paramRes}`)
+        .then(function(response){
+          $scope.player = response.data.data;
+          console.log($scope.player)
+          // RANDOMIZE BUCKET CONTAINERS
+          for(var i = 0; i < 3; i++){
+            let randNum = Math.floor(Math.random() * fruitTypes.length)
+            let bucketType = fruitTypes.splice(randNum, 1);
+            bucketArr.push(bucketType[0]);
+          }
+
+          $scope.bucketOne = bucketArr[0];
+          $scope.bucketTwo = bucketArr[1];
+          $scope.bucketThree = bucketArr[2];
+
+          if(bucketArr === ['Orange', 'Mixed', 'Apple'] || bucketArr === ['Apple', 'Mixed', 'Orange']){
+            let bucketCoin = Math.floor(Math.random() * 2)
+            if(bucketCoin === 0) {
+              bucket[0].id = bucketArr[1].toUpperCase();
+              bucket[1].id = bucketArr[2].toUpperCase();
+              bucket[2].id = bucketArr[0].toUpperCase();
+            } else {
+                bucket[0].id = bucketArr[0].toUpperCase();
+                bucket[1].id = bucketArr[2].toUpperCase();
+                bucket[2].id = bucketArr[1].toUpperCase();
+            }
+          } else {
+              bucket[0].id = bucketArr[2].toUpperCase();
+              bucket[1].id = bucketArr[0].toUpperCase();
+              bucket[2].id = bucketArr[1].toUpperCase();
+          }
+        }, function(err){
+          console.log(err)
+        })
+
+      // CREATE MIXED FRUIT AMALGAMATION
       img1.src = "../assets/images/Apple.png";
       context.drawImage(img1, 0, 1);
-
       img2.src = "../assets/images/Orange.png";
       context.drawImage(img2, 40, 0);
-
       mixedFruit.src = canvas.toDataURL();
       mixedFruit.width = '135';
       mixedFruit.draggable = 'true';
-      mixedFruit.setAttribute('id', 'mixedFruit');
+      mixedFruit.setAttribute('id', 'mixed');
       mixedFruit.setAttribute('class', 'responsive-img');
-      mixedFruitCont.append(mixedFruit);
+      $mixedFruitCont.append(mixedFruit);
 
     // FRUITSELECTOR DRAG FEATURE
       mixedFruit.addEventListener('dragstart', function(ev) {
@@ -119,38 +156,58 @@
 
     // BUCKET HINT FEATURE
       bucketCont.addEventListener('click', function(ev) {
-        console.log(ev.target.getAttribute('class'))
         if(ev.target.getAttribute('class') === 'responsive-img bucket') {
           if(bucketHintTry === 0){
             bucketHintTry += 1;
-            let aTag = document.createElement('a');
-            aTag.setAttribute('class', 'btn tooltipped');
-            aTag.setAttribute('data-position', 'right');
-            aTag.setAttribute('data-delay', '50');
-            aTag.setAttribute('data-tooltip', 'testing');
-
-        // <a class="btn tooltipped" data-position="right" data-delay="50"
-        // data-tooltip='Hint: The buckets are mislabelled, so remember that the "apples"
-        // bucket cannot contain apples.'>Hint!</a>
+            ev.target.setAttribute('class', 'responsive-img bucket tooltipped');
+            ev.target.setAttribute('data-position', 'right');
+            ev.target.setAttribute('data-delay', '50');
+            ev.target.setAttribute('data-tooltip', `I contain a inside.`);
+            $(document).ready(function(){
+              $('.tooltipped').tooltip({delay: 50});
+            });
           }
         }
       })
 
-      $http
-        .get(`http://127.0.0.1:3000/members?profileId=${paramRes}`)
-        .then(function(response){
-          $scope.player = response.data.data;
-          for(var i = 0; i < 3; i++){
-            let randNum = Math.floor(Math.random() * fruitTypes.length)
-            let bucketType = fruitTypes.splice(randNum, 1);
-            bucketArr.push(bucketType[0]);
+    // HANDLE FORM SUBMISSION
+      $form.on('click', function(ev) {
+        ev.preventDefault();
+        if(ev.target.id === 'submitBtn'){
+          if(bucket[0].children.length !== 0 && bucket[1].children.length !== 0 && bucket[2].children.length !== 0) {
+            if($emailInput.val() === $scope.player.email){
+              let submission = {
+                email: $emailInput.val(),
+                bucketOne: {
+                  value: bucket[0].id,
+                  playerAnswer: bucket[0].children[0].id.toUpperCase()
+                },
+                bucketTwo: {
+                  value: bucket[1].id,
+                  playerAnswer: bucket[1].children[0].id.toUpperCase()
+                },
+                bucketThree: {
+                  value: bucket[2].id,
+                  playerAnswer: bucket[2].children[0].id.toUpperCase()
+                }
+              }
+              $http
+                .post('http://127.0.0.1:3000/members/game', submission)
+                .then(function(response){
+                  console.log('I am post')
+                  console.log(response)
+                }, function(err){
+                  console.log(err)
+                })
+
+            } else {
+              $emailInput.addClass('invalid');
+            }
+          } else {
+            console.log('Must fill all buckets with fruit')
           }
-          $scope.bucketOne = bucketArr[0];
-          $scope.bucketTwo = bucketArr[1];
-          $scope.bucketThree = bucketArr[2];
-        }, function(err){
-          console.log(err)
-        })
+        }
+      })
 
     } //  END GAMECTRL -  CONTROLLER
 
