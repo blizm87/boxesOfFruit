@@ -110,6 +110,7 @@ router.get('/linkedin/callback', (req, res1, next) => {
     grant_type: 'authorization_code'
   }
   request.post(url, {form}, (err, resp, body) => {
+    console.log('I GE AN ACCESS TOKEN HERE')
     const data = JSON.parse(body);
     url = 'https://api.linkedin.com/v1/people/';
     const access_token = data.access_token;
@@ -119,6 +120,7 @@ router.get('/linkedin/callback', (req, res1, next) => {
       headers: { 'Authorization' : `Bearer ${access_token}`}
     }
     request(options, (err, response, body2) => {
+      console.log('I RETRIEVE DATA HERE')
       const userInfo = JSON.parse(body2);
       // console.log('I AM THE USERINFO: ');
       console.log(userInfo);
