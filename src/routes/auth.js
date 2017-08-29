@@ -180,7 +180,7 @@ router.get('/nooauth', (req, res2, next) => {
 
     if(finalKeyPair[1] === 'false') {
       console.log('EMAIL WAS FALSE')
-      res.json({data: 'invalid'})
+      res2.json({data: 'invalid'})
     } else if(finalKeyPair[1] === 'true') {
         console.log('EMAIL WAS TRUE')
         googleAuthUser.findOne( {email: req.query.email}, (err, user) => {
