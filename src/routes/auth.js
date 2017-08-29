@@ -107,7 +107,8 @@ router.get('/linkedin/callback', (req, res1, next) => {
     client_id,
     client_secret,
     redirect_uri,
-    grant_type: 'authorization_code'
+    grant_type: 'authorization_code',
+    'Content-Type': 'application/x-www-form-urlencoded'
   }
   request.post(url, {form}, (err, resp, body) => {
     console.log('I GET AN ACCESS TOKEN HERE')
@@ -118,6 +119,7 @@ router.get('/linkedin/callback', (req, res1, next) => {
     const options = {
       method: 'GET',
       url,
+      Connection: 'Keep-Alive'
       'Authorization' : `Bearer ${access_token}`
     }
     request(options, (err, response, body2) => {
