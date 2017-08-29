@@ -3,7 +3,6 @@ var mongoose = require('mongoose');
 var memberSchema = new mongoose.Schema({
   'fullName': String,
   'email': { type: String, required: true },
-  'myId': String,
   'score': {
     gamesPlayed: Number,
     gamesWon: Number,

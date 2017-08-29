@@ -27,7 +27,8 @@
         if(ev.target.id === 'indexSubmitBtn'){
           if($indexInput.val() !== ''){
             $http
-              .get(`http://127.0.0.1:3000/auth/nooauth?email=${$indexInput.val()}`)
+              .get(`https://thawing-tor-23519.herokuapp.com/auth/nooauth?email=${$indexInput.val()}`)
+              // .get(`http://127.0.0.1:3000/auth/nooauth?email=${$indexInput.val()}`)
               .then(function(response){
                 console.log(response.data.data)
                 if(response.data.data === 'invalid') {
@@ -81,7 +82,8 @@
 
     // RETREIVE PROFILE DATA
       $http
-        .get(`http://127.0.0.1:3000/members?profileId=${paramRes}`)
+        .get(`https://thawing-tor-23519.herokuapp.com/members?profileId=${paramRes}`)
+        // .get(`http://127.0.0.1:3000/members?profileId=${paramRes}`)
         .then(function(response){
           $scope.player = response.data.data;
           $scope.playerRecordArr = [];
@@ -254,7 +256,8 @@
                 }
               }
               $http
-                .post('http://127.0.0.1:3000/members/game', submission)
+                .post('https://thawing-tor-23519.herokuapp.com/members/game', submission)
+                // .post('http://127.0.0.1:3000/members/game', submission)
                 .then(function(response){
                   $scope.gameResponse = response.data.data;
                   $('.modal-content').css({

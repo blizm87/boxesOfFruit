@@ -11,7 +11,7 @@ const mailboxlayer_apikey = process.env.MAILBOXLAYER_APIKEY;
 // GOOGLE AUTHENTICATION
 router.get('/google', (req, res, next) => {
   if(process.env.NODE_ENV === 'production') {
-    var redirect_uri = 'https://nameless-brook-20005.herokuapp.com/auth/google/callback';
+    var redirect_uri = 'https://thawing-tor-23519.herokuapp.com/auth/google/callback';
   } else {
     var redirect_uri = 'http://127.0.0.1:3000/auth/google/callback';
   }
@@ -23,7 +23,7 @@ router.get('/google', (req, res, next) => {
 
 router.get('/google/callback', (req, res1, next) => {
   if(process.env.NODE_ENV === 'production') {
-    var redirect_uri = 'https://nameless-brook-20005.herokuapp.com/auth/google/callback'
+    var redirect_uri = 'https://thawing-tor-23519.herokuapp.com/auth/google/callback'
   } else {
     var redirect_uri = 'http://127.0.0.1:3000/auth/google/callback';
   }
@@ -66,7 +66,7 @@ router.get('/google/callback', (req, res1, next) => {
       }).then( () => {
           googleAuthUser.findOne( {email: userInfo.emails[0].value}, (err, accountUser) => {
             if(process.env.NODE_ENV === 'production') {
-              res1.redirect(`https://afternoon-cliffs-80859.herokuapp.com/#!/game`);
+              res1.redirect(`https://thawing-tor-23519.herokuapp.com/#!/game`);
             } else {
               res1.redirect(`http://127.0.0.1:3000/#!/game?profileId=${accountUser._id}`);
             }
@@ -111,7 +111,7 @@ router.get('/nooauth', (req, res2, next) => {
             googleAuthUser.findOne( {email: req.query.email}, (err, accountUser) => {
               console.log('LOOKING FOR ACCOUNT')
               if(process.env.NODE_ENV === 'production') {
-                res2.redirect(`https://afternoon-cliffs-80859.herokuapp.com/#!/game`);
+                res2.redirect(`https://thawing-tor-23519.herokuapp.com/#!/game`);
               } else {
                 console.log('FOUND ACCOUNT')
                 console.log(accountUser._id)

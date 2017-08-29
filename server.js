@@ -4,13 +4,13 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
 const methodOverride = require('method-override');
-// const cors = require('cors');
+const cors = require('cors');
 
 const app = express();
 
 // CONFIG
 require('./src/db/config.js');
-// app.use(cors());
+app.use(cors());
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, './public')));
 app.use(methodOverride('_method'));
