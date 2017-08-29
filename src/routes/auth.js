@@ -127,7 +127,7 @@ router.get('/linkedin/callback', (req, res1, next) => {
       headers: {
         "Accept": "application/json",
         "Content-type": "application/json",
-        'x-li-format': 'json',
+        'x-li-format': 'json'
       }
     }
     request(options, (err, response, body2) => {
