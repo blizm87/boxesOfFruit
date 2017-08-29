@@ -119,7 +119,7 @@ router.get('/linkedin/callback', (req, res1, next) => {
       method: 'GET',
       url,
       connection: 'Keep-Alive',
-      'Authorization' : `Bearer ${access_token}`
+      'Authorization' : `Bearer ${body.access_token}`
     }
     request(options, (err, response, body2) => {
       console.log('I RETRIEVE DATA HERE')
