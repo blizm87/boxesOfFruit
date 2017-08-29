@@ -3,14 +3,12 @@ const router = express.Router();
 const request = require('request');
 const googleAuthUser = require('../models/authenticatedUsers.js');
 
-const google_client_id = process.env.GOOGLE_CLIENT_ID;
-const google_client_secret = process.env.GOOGLE_CLIENT_SECRET;
-const linkedin_client_id = process.env.LINKEDIN_CLIENT_ID;
-const linkedin_client_secret = process.env.LINKEDIN_CLIENT_SECRET;
 const mailboxlayer_apikey = process.env.MAILBOXLAYER_APIKEY;
 
 // GOOGLE AUTHENTICATION
 router.get('/google', (req, res, next) => {
+  const client_id = process.env.GOOGLE_CLIENT_ID;
+  const client_secret = process.env.GOOGLE_CLIENT_SECRET;
   if(process.env.NODE_ENV === 'production') {
     var redirect_uri = 'https://thawing-tor-23519.herokuapp.com/auth/google/callback';
   } else {
@@ -18,11 +16,13 @@ router.get('/google', (req, res, next) => {
   }
 
   const url = 'https://accounts.google.com/o/oauth2/v2/auth';
-  const queryParams = `response_type=code&client_id=${google_client_id}&scope=email&state=abc&redirect_uri=${redirect_uri}`;
+  const queryParams = `response_type=code&client_id=${client_id}&scope=email&state=abc&redirect_uri=${redirect_uri}`;
   res.redirect(url + '?' + queryParams);
 });
 
 router.get('/google/callback', (req, res1, next) => {
+  const client_id = process.env.GOOGLE_CLIENT_ID;
+  const client_secret = process.env.GOOGLE_CLIENT_SECRET;
   if(process.env.NODE_ENV === 'production') {
     var redirect_uri = 'https://thawing-tor-23519.herokuapp.com/auth/google/callback'
   } else {
@@ -32,8 +32,8 @@ router.get('/google/callback', (req, res1, next) => {
   let url = 'https://www.googleapis.com/oauth2/v4/token';
   const form = {
     code,
-    google_client_id,
-    google_client_secret,
+    client_id,
+    client_secret,
     redirect_uri,
     grant_type: 'authorization_code'
   }
@@ -79,6 +79,8 @@ router.get('/google/callback', (req, res1, next) => {
 
 // LINKEDIN AUTHENTICATION
 router.get('/linkedin', (req, res, next) => {
+  const client_id = process.env.LINKEDIN_CLIENT_ID;
+  const client_secret = process.env.LINKEDIN_CLIENT_SECRET;
   if(process.env.NODE_ENV === 'production') {
     var redirect_uri = 'https://thawing-tor-23519.herokuapp.com/auth/linkedin/callback';
   } else {
@@ -86,11 +88,13 @@ router.get('/linkedin', (req, res, next) => {
   }
 
   const url = 'https://www.linkedin.com/oauth/v2/authorization';
-  const queryParams = `response_type=code&client_id=${linkedin_client_id}&scope=r_emailaddress&state=abc&redirect_uri=${redirect_uri}`;
+  const queryParams = `response_type=code&client_id=${client_id}&scope=r_emailaddress&state=abc&redirect_uri=${redirect_uri}`;
   res.redirect(url + '?' + queryParams);
 });
 
 router.get('/linkedin/callback', (req, res1, next) => {
+  const client_id = process.env.LINKEDIN_CLIENT_ID;
+  const client_secret = process.env.LINKEDIN_CLIENT_SECRET;
   if(process.env.NODE_ENV === 'production') {
     var redirect_uri = 'https://thawing-tor-23519.herokuapp.com/auth/linkedin/callback'
   } else {
@@ -100,8 +104,8 @@ router.get('/linkedin/callback', (req, res1, next) => {
   let url = 'https://www.linkedin.com/oauth/v2/accessToken';
   const form = {
     code,
-    linkedin_client_id,
-    linkedin_client_secret,
+    client_id,
+    client_secret,
     redirect_uri,
     grant_type: 'authorization_code'
   }
