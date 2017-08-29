@@ -111,8 +111,8 @@ router.get('/linkedin/callback', (req, res1, next) => {
   }
   request.post(url, {form}, (err, resp, body) => {
     console.log('I GET AN ACCESS TOKEN HERE')
+    console.log(body)
     const data = JSON.parse(body);
-    console.log(data.access_token)
     url = 'https://api.linkedin.com/v1/people/~ HTTP/1.1';
     const access_token = data.access_token;
     const options = {
