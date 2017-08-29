@@ -32,8 +32,8 @@ router.get('/google/callback', (req, res1, next) => {
   let url = 'https://www.googleapis.com/oauth2/v4/token';
   const form = {
     code,
-    client_id,
-    client_secret,
+    google_client_id,
+    google_client_secret,
     redirect_uri,
     grant_type: 'authorization_code'
   }
@@ -100,8 +100,8 @@ router.get('/linkedin/callback', (req, res1, next) => {
   let url = 'https://www.linkedin.com/oauth/v2/accessToken';
   const form = {
     code,
-    client_id,
-    client_secret,
+    linked_client_id,
+    linked_client_secret,
     redirect_uri,
     grant_type: 'authorization_code'
   }
