@@ -107,8 +107,7 @@ router.get('/linkedin/callback', (req, res1, next) => {
     client_id,
     client_secret,
     redirect_uri,
-    grant_type: 'authorization_code',
-    'Content-Type': 'application/x-www-form-urlencoded'
+    grant_type: 'authorization_code'
   }
   request.post(url, {form}, (err, resp, body) => {
     console.log('I GET AN ACCESS TOKEN HERE')
