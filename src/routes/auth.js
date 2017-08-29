@@ -3,8 +3,10 @@ const router = express.Router();
 const request = require('request');
 const googleAuthUser = require('../models/authenticatedUsers.js');
 
-const client_id = process.env.GOOGLE_CLIENT_ID;
-const client_secret = process.env.GOOGLE_CLIENT_SECRET;
+const google_client_id = process.env.GOOGLE_CLIENT_ID;
+const google_client_secret = process.env.GOOGLE_CLIENT_SECRET;
+const linkedin_client_id = process.env.LINKEDIN_CLIENT_ID;
+const linkedin_client_secret = process.env.LINKEDIN_CLIENT_SECRET;
 const mailboxlayer_apikey = process.env.MAILBOXLAYER_APIKEY;
 
 // GOOGLE AUTHENTICATION
@@ -16,7 +18,7 @@ router.get('/google', (req, res, next) => {
   }
 
   const url = 'https://accounts.google.com/o/oauth2/v2/auth';
-  const queryParams = `response_type=code&client_id=${client_id}&scope=email&state=abc&redirect_uri=${redirect_uri}`;
+  const queryParams = `response_type=code&client_id=${google_client_id}&scope=email&state=abc&redirect_uri=${redirect_uri}`;
   res.redirect(url + '?' + queryParams);
 });
 
@@ -75,6 +77,75 @@ router.get('/google/callback', (req, res1, next) => {
   });
 });
 
+// LINKEDIN AUTHENTICATION
+router.get('/linkedin', (req, res, next) => {
+  if(process.env.NODE_ENV === 'production') {
+    var redirect_uri = 'https://thawing-tor-23519.herokuapp.com/auth/linkedin/callback';
+  } else {
+    var redirect_uri = 'http://127.0.0.1:3000/auth/google/callback';
+  }
+
+  const url = 'https://www.linkedin.com/oauth/v2/authorization';
+  const queryParams = `response_type=code&client_id=${linkedin_client_id}&scope=r_fullprofile%20r_emailaddress%20&state=abc&redirect_uri=${redirect_uri}`;
+  res.redirect(url + '?' + queryParams);
+});
+
+router.get('/linkedin/callback', (req, res1, next) => {
+  if(process.env.NODE_ENV === 'production') {
+    var redirect_uri = 'https://thawing-tor-23519.herokuapp.com/auth/linkedin/callback'
+  } else {
+    var redirect_uri = 'http://127.0.0.1:3000/auth/linkedin/callback';
+  }
+  const {code, state} = req.query;
+  let url = 'https://www.linkedin.com/oauth/v2/accessToken';
+  const form = {
+    code,
+    client_id,
+    client_secret,
+    redirect_uri,
+    grant_type: 'authorization_code'
+  }
+  request.post(url, {form}, (err, resp, body) => {
+    const data = JSON.parse(body);
+    url = 'https://api.linkedin.com/v1/people/';
+    const access_token = data.access_token;
+    const options = {
+      method: 'GET',
+      url,
+      headers: { 'Authorization' : `Bearer ${access_token}`}
+    }
+    request(options, (err, response, body2) => {
+      const userInfo = JSON.parse(body2);
+      // console.log('I AM THE USERINFO: ');
+      console.log(userInfo);
+      // googleAuthUser.findOne( {email: userInfo.emails[0].value}, (err, user) => {
+      //   if(user === null) {
+      //     let newUser = new googleAuthUser({
+      //       fullName: userInfo.displayName,
+      //       email: userInfo.emails[0].value,
+      //       score: {
+      //         gamesPlayed: 0,
+      //         gamesWon: 0,
+      //         gameRecords: []
+      //       }
+      //     })
+
+      //     newUser.save();
+      //   }
+      // }).then( () => {
+      //     googleAuthUser.findOne( {email: userInfo.emails[0].value}, (err, accountUser) => {
+      //       if(process.env.NODE_ENV === 'production') {
+      //         res1.redirect(`https://thawing-tor-23519.herokuapp.com/#!/game?profileId=${accountUser._id}`);
+      //       } else {
+      //         res1.redirect(`http://127.0.0.1:3000/#!/game?profileId=${accountUser._id}`);
+      //       }
+      //     })
+      // });
+    });
+  });
+});
+
+// NO AUTHENTICATION - JUST EMAIL
 router.get('/nooauth', (req, res2, next) => {
   console.log(req.query.email)
   let mailboxLayerUrl = `http://apilayer.net/api/check?access_key=${mailboxlayer_apikey}&email=${req.query.email}`;
