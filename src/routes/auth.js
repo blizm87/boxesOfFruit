@@ -113,7 +113,7 @@ router.get('/linkedin/callback', (req, res1, next) => {
     console.log('I GET AN ACCESS TOKEN HERE')
     const data = JSON.parse(body);
     console.log(data.access_token)
-    url = 'https://api.linkedin.com/v1/people/';
+    url = 'https://api.linkedin.com/v1/people/~ HTTP/1.1';
     const access_token = data.access_token;
     const options = {
       method: 'GET',
@@ -124,10 +124,9 @@ router.get('/linkedin/callback', (req, res1, next) => {
       console.log('I RETRIEVE DATA HERE')
       // const userInfo = JSON.parse(body2);
       // console.log('I AM THE USERINFO: ');
-      console.log(err)
-      console.log(err)
-      console.log(response)
-      console.log(response)
+      // console.log(err)
+      // console.log(response)
+      console.log(body2)
 
       res1.redirect('https://thawing-tor-23519.herokuapp.com/#!/game')
       // googleAuthUser.findOne( {email: userInfo.emails[0].value}, (err, user) => {
