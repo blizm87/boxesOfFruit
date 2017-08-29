@@ -109,7 +109,8 @@ router.get('/linkedin/callback', (req, res1, next) => {
     redirect_uri,
     grant_type: 'authorization_code',
     headers: {
-      'Content-Type': 'application/json'
+      "Accept": "application/json",
+      "Content-type": "application/json"
     }
   }
   request.post(url, {form}, (err, resp, body) => {
@@ -122,7 +123,12 @@ router.get('/linkedin/callback', (req, res1, next) => {
       method: 'GET',
       url,
       Connection: 'Keep-Alive',
-      'Authorization' : `Bearer ${body.access_token}`
+      'Authorization' : `Bearer ${access_token}`
+      headers: {
+        "Accept": "application/json",
+        "Content-type": "application/json"
+        'x-li-format': 'json',
+      }
     }
     request(options, (err, response, body2) => {
       console.log('I RETRIEVE DATA HERE')
