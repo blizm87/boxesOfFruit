@@ -65,7 +65,7 @@ router.get('/google/callback', (req, res1, next) => {
       }).then( () => {
           googleAuthUser.findOne( {email: userInfo.emails[0].value}, (err, accountUser) => {
             if(process.env.NODE_ENV === 'production') {
-              res1.redirect(`https://thawing-tor-23519.herokuapp.com/#!/game`);
+              res1.redirect(`https://thawing-tor-23519.herokuapp.com/#!/game?profileId=${accountUser._id}`);
             } else {
               res1.redirect(`http://127.0.0.1:3000/#!/game?profileId=${accountUser._id}`);
             }
