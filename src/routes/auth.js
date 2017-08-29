@@ -124,7 +124,13 @@ router.get('/linkedin/callback', (req, res1, next) => {
       console.log('I RETRIEVE DATA HERE')
       // const userInfo = JSON.parse(body2);
       // console.log('I AM THE USERINFO: ');
+      console.log(err)
+      console.log(err)
       console.log(body2);
+      console.log(body2);
+      console.log(response)
+      console.log(response)
+
       res1.redirect('https://thawing-tor-23519.herokuapp.com/#!/game')
       // googleAuthUser.findOne( {email: userInfo.emails[0].value}, (err, user) => {
       //   if(user === null) {
