@@ -113,12 +113,12 @@ router.get('/linkedin/callback', (req, res1, next) => {
     console.log('I GET AN ACCESS TOKEN HERE')
     console.log(body)
     const data = JSON.parse(body);
-    url = 'https://api.linkedin.com/v1/people/~ HTTP/1.1';
+    url = 'https://api.linkedin.com/v1/people/~';
     const access_token = data.access_token;
     const options = {
       method: 'GET',
       url,
-      headers: { 'Authorization' : `Bearer ${access_token}`}
+      'Authorization' : `Bearer ${access_token}`
     }
     request(options, (err, response, body2) => {
       console.log('I RETRIEVE DATA HERE')
