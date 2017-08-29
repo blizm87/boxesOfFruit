@@ -34,13 +34,9 @@
                 if(response.data.data === 'invalid') {
                   $indexInput.addClass(response.data.data)
                 } else {
-                  $http
-                    .get(`#!/game?profileId=${response.data.data}`)
-                    .then(function(resp){
-
-                    }, function(errr){
-
-                    })
+                  $('#hiddenATag').href = `https://thawing-tor-23519.herokuapp.com/#!/game?profileId=${response.data.data}`;
+                  console.log($('#hiddenATag'))
+                  $('#hiddenATag').click()
                 }
               }, function(err){
                 console.log(err)
