@@ -88,7 +88,7 @@ router.get('/linkedin', (req, res, next) => {
   }
 
   const url = 'https://www.linkedin.com/oauth/v2/authorization';
-  const queryParams = `response_type=code&client_id=${client_id}&state=abc&redirect_uri=${redirect_uri}`;
+  const queryParams = `response_type=code&client_id=${client_id}&scope=r_emailaddress&state=abc&redirect_uri=${redirect_uri}`;
   res.redirect(url + '?' + queryParams);
 });
 
@@ -113,7 +113,7 @@ router.get('/linkedin/callback', (req, res1, next) => {
     console.log('I GET AN ACCESS TOKEN HERE')
     console.log(body)
     const data = JSON.parse(body);
-    url = 'https://.api.linkedin.com/v1/people/~';
+    url = 'https://api.linkedin.com/v1/people/~';
     const access_token = data.access_token;
     const options = {
       method: 'GET',
