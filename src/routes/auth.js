@@ -101,7 +101,7 @@ router.get('/linkedin/callback', (req, res1, next) => {
     var redirect_uri = 'http://127.0.0.1:3000/auth/linkedin/callback';
   }
   const {code, state} = req.query;
-  let url = 'www.linkedin.com/oauth/v2/accessToken';
+  let url = 'http://linkedin.com/oauth/v2/accessToken';
   const form = {
     code,
     client_id,
