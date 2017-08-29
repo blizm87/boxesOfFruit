@@ -5,7 +5,6 @@ html,body {
 
 body {
   margin-top: 0;
-  /*border: 1px solid black;*/
   background-color: lavender;
 }
 
@@ -42,7 +41,7 @@ body {
     }
 
         #cardContainer {
-          margin-top: 2em;
+          margin-top: 5%;
           margin-left: auto;
           margin-right: auto;
           width: 400px;
@@ -63,7 +62,7 @@ body {
                     }
 
     #partialGameContainer {
-      /*border: 1px solid black;*/
+
     }
 
         #problemStatement {
@@ -181,43 +180,137 @@ body {
           display: none;
         }
 
-        #historyScoreContainer {
-          /*border: 1px solid black;*/
-        }
-
-            #historyScoreContainer>h3 {
-              text-align: center;
-              margin-top: 0;
+            #historyScoreContainer {
+              width: 99.5%;
+              height: 460px;
+              max-height: 460px;
+              overflow: scroll;
             }
 
-            #historyContent {
+                #historyScoreContainer>h3 {
+                  text-align: center;
+                  margin-top: 0;
+                }
 
-            }
+    footer {
+      width: 100%;
+      padding-top: .5em;
+      padding-bottom: .5em;
+      background-color: teal;
+      font-weight: bold;
+      text-align: center;
+    }
 
-  @media screen and (max-width: 992px) {
-    #desktopScoreContainer {
+    #desktopFooterIndex {
+      display: block;
+      position: absolute;
+      bottom: 0;
+    }
+
+    #ipadFooterIndex {
       display: none;
     }
 
-    #mobileScoreContainer {
-      margin-top: 3em;
+    #mobileFooterIndex {
+      display: none;
+    }
+
+    #desktopFooterGame {
       display: block;
     }
 
-        #gameRecords {
-          width: 70%;
-        }
-
-    #historyContainer {
-      margin-top: 4em;
+    #ipadFooterGame {
+      display: none;
     }
-  }
 
-footer {
-  width: 100%;
-  padding-top: .5em;
-  padding-bottom: .5em;
-  background-color: teal;
-  font-weight: bold;
-  text-align: center;
-}
+    #mobileFooterGame {
+      display: none;
+    }
+
+    @media screen and (max-width: 992px) {
+      #cardContainer {
+        margin-top: 25%;
+      }
+
+      #desktopScoreContainer {
+        display: none;
+      }
+
+      #mobileScoreContainer {
+        margin-top: 3em;
+        display: block;
+      }
+
+          #gameRecords {
+            width: 70%;
+          }
+
+      #historyContainer {
+        margin-top: 4em;
+      }
+
+      #ipadFooterIndex {
+        position: absolute;
+        bottom: 0;
+        display: block;
+      }
+
+      #desktopFooterIndex {
+        display: none;
+      }
+
+      #mobileFooterIndex {
+        display: none;
+      }
+
+      #ipadFooterGame {
+        display: block;
+      }
+
+      #desktopFooterGame {
+        display: none;
+      }
+
+      #mobileFooterGame {
+        display: none;
+      }
+    }
+
+    @media screen and (max-width: 600px) {
+      #headerBackImg {
+        height: 16em;
+      }
+
+      #headerOverlay {
+        height: 16em;
+      }
+
+      #cardContainer {
+        margin-top: 2em;
+      }
+
+      #mobileFooterIndex {
+        display: block;
+      }
+
+      #ipadFooterIndex {
+        display: none;
+      }
+
+      #desktopFooterIndex {
+        display: none;
+      }
+
+      #mobileFooterGame {
+        display: block;
+      }
+
+      #ipadFooterGame {
+        display: none;
+      }
+
+      #desktopFooterGame {
+        display: none;
+      }
+    }
+

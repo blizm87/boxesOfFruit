@@ -65,7 +65,7 @@
           for(var i = response.data.data.score.gameRecords.length - 1; i >= 0; i--) {
             $scope.playerRecordArr.push(response.data.data.score.gameRecords[i]);
           }
-          console.log($scope.playerRecordArr)
+          // console.log($scope.playerRecordArr)
           // console.log($scope.player)
           // RANDOMIZE BUCKET CONTAINERS
           for(var j = 0; j < 3; j++){

@@ -1,5 +1,5 @@
 <div id='partialGameContainer' class='container-fluid'>
-  <section class='row'>
+  <section class='row' id='sectionOne'>
     <div class='container-fluid' id='instructionBtnContainer'>
       <button class='btn waves-effect waves-blue pulse grey lighten-4 red-text' id='instructionBtn'>Instructions</button>
     </div>
@@ -22,7 +22,7 @@
     </div>
   </section>
 
-  <section class='row'>
+  <section class='row' id='sectionTwo'>
     <div class='col l4' id='desktopScoreContainer'>
       <div class='container-fluid' id='playerScoreContainer'>
         <h3 style='text-decoration: underline;'>Player Details</h3><br>
@@ -37,7 +37,7 @@
     </div>
 
     <div class='col s12 m12 l4'>
-      <form>
+      <form id='gameFormContainer'>
         <div id='fruitContainer'>
           <canvas id='mixedFruitCanvas' width='80px' height='42px'></canvas>
           <img src='./assets/images/Apple.png' alt='APPLE' class='fruitSelectors' draggable='true' id='apple'>
@@ -119,4 +119,17 @@
 
   </section>
 </div>
+
+<footer class='container-fluid' id='desktopFooterGame'>
+  <p>Developer: Justin Samuels &copy;2017</p>
+</footer>
+
+<footer class='container-fluid' id='ipadFooterGame'>
+  <p>Developer: Justin Samuels &copy;2017</p>
+</footer>
+
+<footer class='container-fluid' id='mobileFooterGame'>
+  <p>Developer: Justin Samuels &copy;2017</p>
+</footer>
+
 
