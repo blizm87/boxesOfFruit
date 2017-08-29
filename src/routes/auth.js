@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const request = require('request');
 const googleAuthUser = require('../models/authenticatedUsers.js');
-const validator = require('mailgun-email-validation');
 
 const client_id = process.env.GOOGLE_CLIENT_ID;
 const client_secret = process.env.GOOGLE_CLIENT_SECRET;
