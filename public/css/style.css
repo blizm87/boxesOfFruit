@@ -115,6 +115,10 @@ body {
                   float: right;
                 }
 
+            #signOutBtn {
+              text-align: center;
+            }
+
         #fruitContainerHidden {
           margin-left: auto;
           margin-right: auto;

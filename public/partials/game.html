@@ -16,6 +16,15 @@
             If you choose correctly you will be able to determine the correct contents
             of all three buckets.
         </p>
+        <p>
+          <span class='instrSpan'>How-To-Play:</span> Start by clicking on a bucket image.
+            Remove the mouse from over the bucket and then hover over the bucket that you
+            selected. A hint will appear and tell you what fruit is actually in the bucket.
+            You only get one hint, so choose wisely. Next hover over any of the 3 fruits above
+            and click and hold that fruit. You can then drop the fruit in to any of the 3 buckets.
+            Once all 3 buckets have been filled, enter your email address associated with your
+            account and press the submit button.
+        </p>
         <a class="btn tooltipped" data-position="right" data-delay="50"
           data-tooltip='Hint: The buckets are mislabelled, so remember that the "apples" bucket cannot contain apples.'>Hint!</a>
       </div>
@@ -32,6 +41,9 @@
             <h5>Games Played: <span id='gamesPlayedTally'>{{player.score.gamesPlayed}}</span></h5>
             <h5>Games Won: <span id='gamesWonTally'>{{player.score.gamesWon}}</span></h5>
           </div>
+          <a href="https://thawing-tor-23519.herokuapp.com/" class='btn waves-effect waves-teal grey lighten-4' id='signOutBtn'>
+            Sign Out
+          </a>
         </div>
       </div>
     </div>
