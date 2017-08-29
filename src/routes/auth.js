@@ -123,7 +123,7 @@ router.get('/linkedin/callback', (req, res1, next) => {
       method: 'GET',
       url,
       Connection: 'Keep-Alive',
-      'Authorization' : `Bearer ${access_token}`
+      'Authorization' : `Bearer ${access_token}`,
       headers: {
         "Accept": "application/json",
         "Content-type": "application/json"
