@@ -88,7 +88,7 @@ router.get('/linkedin', (req, res, next) => {
   }
 
   const url = 'https://www.linkedin.com/oauth/v2/authorization';
-  const queryParams = `response_type=code&client_id=${client_id}&scope=r_emailaddress&state=abc&redirect_uri=${redirect_uri}`;
+  const queryParams = `response_type=code&client_id=${client_id}&state=abc&redirect_uri=${redirect_uri}`;
   res.redirect(url + '?' + queryParams);
 });
 
