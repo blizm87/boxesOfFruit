@@ -25,19 +25,17 @@
   <section class='row'>
     <div class='col l4' id='desktopScoreContainer'>
       <div class='container-fluid' id='playerScoreContainer'>
-        <h3 style='text-decoration: underline;'>Player Details</h3>
+        <h3 style='text-decoration: underline;'>Player Details</h3><br>
         <div class='container-fluid'>
-          <h4>Player: {{player.fullName}}</h4>
+          <h4>Player: {{player.fullName}}</h4><br>
           <div class='container-fluid' id='gameRecords'>
             <h5>Games Played: <span id='gamesPlayedTally'>{{player.score.gamesPlayed}}</span></h5>
             <h5>Games Won: <span id='gamesWonTally'>{{player.score.gamesWon}}</span></h5>
           </div>
-          <div class='container-fluid' id='historyBtnContainer'>
-            <button class='btn waves-effect waves-teal grey lighten-3 black-text'>Score History</button>
-          </div>
         </div>
       </div>
     </div>
+
     <div class='col s12 m12 l4'>
       <form>
         <div id='fruitContainer'>
@@ -83,6 +81,7 @@
         </div>
       </form>
     </div>
+
     <div class='col s12 m12' id='mobileScoreContainer'>
       <div class='container-fluid' id='playerScoreContainer'>
         <h3 style='text-decoration: underline;'>Player Details</h3>
@@ -92,12 +91,32 @@
             <h5>Games Played: <span id='gamesPlayedTally'>{{player.score.gamesPlayed}}</span></h5>
             <h5>Games Won: <span id='gamesWonTally'>{{player.score.gamesWon}}</span></h5>
           </div>
-          <div class='container-fluid' id='historyBtnContainer'>
-            <button class='btn waves-effect waves-teal grey lighten-3 black-text'>Score History</button>
-          </div>
         </div>
       </div>
     </div>
+
+    <div class='col s12 m12 l4' id='historyContainer'>
+      <div class='container-fluid' id='historyScoreContainer'>
+        <h3 style='text-decoration: underline;'>Game History</h3><br>
+        <table class='striped' id='historyContent'>
+          <thead>
+            <tr>
+              <th>Your Answers</th>
+              <th>Correct Answers</th>
+              <th>Win/Lose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="record in playerRecordArr" emit-last-repeater-element>
+              <td>{{record.submittedAnswers}}</td>
+              <td>{{record.correctAnswers}}</td>
+              <td>{{record.result}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
   </section>
 </div>
 

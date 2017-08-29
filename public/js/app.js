@@ -61,9 +61,14 @@
         .get(`http://127.0.0.1:3000/members?profileId=${paramRes}`)
         .then(function(response){
           $scope.player = response.data.data;
+          $scope.playerRecordArr = [];
+          for(var i = response.data.data.score.gameRecords.length - 1; i >= 0; i--) {
+            $scope.playerRecordArr.push(response.data.data.score.gameRecords[i]);
+          }
+          console.log($scope.playerRecordArr)
           // console.log($scope.player)
           // RANDOMIZE BUCKET CONTAINERS
-          for(var i = 0; i < 3; i++){
+          for(var j = 0; j < 3; j++){
             let randNum = Math.floor(Math.random() * fruitTypes.length)
             let bucketType = fruitTypes.splice(randNum, 1);
             bucketArr.push(bucketType[0]);

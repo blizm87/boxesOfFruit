@@ -116,13 +116,6 @@ body {
                   float: right;
                 }
 
-                #historyBtnContainer {
-                  margin-top: 2em;
-                  display: flex;
-                  align-items: flex-start;
-                  justify-content: center;
-                }
-
         #fruitContainerHidden {
           margin-left: auto;
           margin-right: auto;
@@ -188,18 +181,36 @@ body {
           display: none;
         }
 
+        #historyScoreContainer {
+          /*border: 1px solid black;*/
+        }
+
+            #historyScoreContainer>h3 {
+              text-align: center;
+              margin-top: 0;
+            }
+
+            #historyContent {
+
+            }
+
   @media screen and (max-width: 992px) {
     #desktopScoreContainer {
       display: none;
     }
 
     #mobileScoreContainer {
+      margin-top: 3em;
       display: block;
     }
 
         #gameRecords {
           width: 70%;
         }
+
+    #historyContainer {
+      margin-top: 4em;
+    }
   }
 
 footer {
