@@ -5,23 +5,23 @@
   angular
     .module('BoxesOfFruitApp', ['ngRoute'])
     .config(routes)
-    .controller('mainCtrl', ['$scope', '$http', '$timeout', mainCtrl])
-    .controller('indexCtrl', ['$scope', '$http', '$timeout', indexCtrl])
-    .controller('gameCtrl', ['$scope', '$http', '$timeout', gameCtrl])
+    .controller('mainCtrl', ['$scope', '$http', '$timeout', '$route', mainCtrl])
+    .controller('indexCtrl', ['$scope', '$http', '$timeout', '$route', indexCtrl])
+    .controller('gameCtrl', ['$scope', '$http', '$timeout', '$route', gameCtrl])
 
     //  CONTROLLER FUNCTION HANDLER SECTION
 
-    function mainCtrl($scope, $http, $timeout){
+    function mainCtrl($scope, $http, $timeout, $route){
       console.log('I am the main controller')
 
     } //  END MAINCTRL -  CONTROLLER
 
-    function indexCtrl($scope, $http, $timeout){
+    function indexCtrl($scope, $http, $timeout, $route){
       console.log('I am the index controller')
 
     } //  END INDEXCTRL -  CONTROLLER
 
-    function gameCtrl($scope, $http, $timeout){
+    function gameCtrl($scope, $http, $timeout, $route){
       console.log('I am the game controller')
       let urlParams = window.location.href.split('?')[1];
       let paramRes = urlParams.split('=')[1];
@@ -41,6 +41,13 @@
       let bucketHintTry = 0;
       let $form = $('form');
       let $emailInput = $('#email');
+      let formNum = 0;
+
+      $(document).ready(function(){
+        // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+        $('.modal').modal();
+      });
+
       $(document).ready(function(){
         $('.tooltipped').tooltip({delay: 50});
       });
@@ -54,7 +61,7 @@
         .get(`http://127.0.0.1:3000/members?profileId=${paramRes}`)
         .then(function(response){
           $scope.player = response.data.data;
-          console.log($scope.player)
+          // console.log($scope.player)
           // RANDOMIZE BUCKET CONTAINERS
           for(var i = 0; i < 3; i++){
             let randNum = Math.floor(Math.random() * fruitTypes.length)
@@ -92,7 +99,7 @@
       img2.src = "../assets/images/Orange.png";
       context.drawImage(img2, 40, 0);
       mixedFruit.src = canvas.toDataURL();
-      mixedFruit.width = '135';
+      mixedFruit.width = '125';
       mixedFruit.draggable = 'true';
       mixedFruit.setAttribute('id', 'mixed');
       mixedFruit.setAttribute('class', 'responsive-img');
@@ -122,6 +129,12 @@
         if(ev.target.children[0] === undefined){
           var data = ev.dataTransfer.getData("fruit");
           ev.target.appendChild(document.getElementById(data));
+          if(bucket[1].children[0] !== undefined && bucket[2].children[0] !== undefined){
+            console.log('all buckets are full')
+            $('#fruitContainerHidden').css({
+              display: 'flex'
+            })
+          }
         }
       });
 
@@ -136,6 +149,12 @@
         if(ev.target.children[0] === undefined){
           var data = ev.dataTransfer.getData("fruit");
           ev.target.appendChild(document.getElementById(data));
+          if(bucket[0].children[0] !== undefined && bucket[2].children[0] !== undefined){
+            console.log('all buckets are full')
+            $('#fruitContainerHidden').css({
+              display: 'flex'
+            })
+          }
         }
       });
 
@@ -150,6 +169,12 @@
         if(ev.target.children[0] === undefined){
           var data = ev.dataTransfer.getData("fruit");
           ev.target.appendChild(document.getElementById(data));
+          if(bucket[0].children[0] !== undefined && bucket[1].children[0] !== undefined){
+            console.log('all buckets are full')
+            $('#fruitContainerHidden').css({
+              display: 'flex'
+            })
+          }
         }
       });
     // BUCKET DROP FEATURE END
@@ -162,7 +187,16 @@
             ev.target.setAttribute('class', 'responsive-img bucket tooltipped');
             ev.target.setAttribute('data-position', 'right');
             ev.target.setAttribute('data-delay', '50');
-            ev.target.setAttribute('data-tooltip', `I contain a inside.`);
+            if(ev.target.id === 'MIXED') {
+              let bucketFakeValue = $(`#${ev.target.parentNode.id}>h5`).text();
+              if(bucketFakeValue === 'Apple'){
+                ev.target.setAttribute('data-tooltip', `I contain an Orange inside.`);
+              } else {
+                  ev.target.setAttribute('data-tooltip', `I contain an Apple inside.`);
+              }
+            } else {
+                ev.target.setAttribute('data-tooltip', `I contain an ${ev.target.id} inside.`);
+            }
             $(document).ready(function(){
               $('.tooltipped').tooltip({delay: 50});
             });
@@ -194,8 +228,20 @@
               $http
                 .post('http://127.0.0.1:3000/members/game', submission)
                 .then(function(response){
-                  console.log('I am post')
-                  console.log(response)
+                  $scope.gameResponse = response.data.data;
+                  $('.modal-content').css({
+                    'background-image': `url(${response.data.data.bckImage})`,
+                    'color': `${response.data.data.color}`
+                  });
+                  $timeout(function() {
+                    document.querySelector('#modalBtn').click()
+                  }, 2000).then( () => {
+                    $timeout(function() {
+                      $('#modal1').modal('close');
+                    }, 5000).then( () => {
+                      $route.reload();  // REINITIALIZES CONTROLLER
+                    })
+                  })
                 }, function(err){
                   console.log(err)
                 })
@@ -220,7 +266,8 @@
         })
         .when('/game', {
           templateUrl: '../partials/game.html',
-          controller: 'gameCtrl'
+          controller: 'gameCtrl',
+          reload: true
         })
         .otherwise({
           rediretTo: '/',

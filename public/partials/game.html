@@ -23,7 +23,7 @@
   </section>
 
   <section class='row'>
-    <div class='col s12 m4'>
+    <div class='col l4' id='desktopScoreContainer'>
       <div class='container-fluid' id='playerScoreContainer'>
         <h3 style='text-decoration: underline;'>Player Details</h3>
         <div class='container-fluid'>
@@ -38,7 +38,7 @@
         </div>
       </div>
     </div>
-    <div class='col s12 m4'>
+    <div class='col s12 m12 l4'>
       <form>
         <div id='fruitContainer'>
           <canvas id='mixedFruitCanvas' width='80px' height='42px'></canvas>
@@ -46,29 +46,57 @@
           <div id='mixedFruitContainer'></div>
           <img src='./assets/images/Orange.png' alt='ORANGE' class='fruitSelectors' draggable='true' id='orange'>
         </div>
+        <div id='fruitContainerHidden'>
+          <img src='./assets/images/Apple.png' alt='APPLE' width='70px'>
+          <img src='./assets/images/Orange.png' alt='ORANGE' width='70px'>
+        </div>
         <div id='bucketContainer'>
-          <div class='bucketInd'>
+          <div class='bucketInd' id='bucketIndOne'>
             <img src="../assets/images/bucket.png" alt="bucket" class='responsive-img bucket' draggable='false'>
             <h5>{{bucketOne}}</h5>
           </div>
-          <div class='bucketInd'>
+          <div class='bucketInd' id='bucketIndTwo'>
             <img src="../assets/images/bucket.png" alt="bucket" class='responsive-img bucket' draggable='false'>
             <h5>{{bucketTwo}}</h5>
           </div>
-          <div class='bucketInd'>
+          <div class='bucketInd' id='bucketIndThree'>
             <img src="../assets/images/bucket.png" alt="bucket" class='responsive-img bucket' draggable='false'>
             <h5>{{bucketThree}}</h5>
           </div>
         </div>
         <div class='container-fluid' id='submissionContainer'>
-          <p>*Note: Enter email address to submit.</p>
+          <p style='font-weight: bold;'>*Note: Enter email address to submit.</p>
           <div class="input-field">
             <input id="email" type="email" class="validate black-text" required>
             <label for="email" class='teal-text'>Email</label>
           </div>
           <button class='btn waves-effect' id='submitBtn' type='submit'>Submit Answer</button>
+          <button class='btn modal-trigger' data-target='modal1' id='modalBtn' style='display: none;'></button>
+        </div>
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+          <div class="modal-content"><br>
+            <h4 style='font-weight: bold;'>{{gameResponse.header}}</h4><br>
+            <h5 class='center' style='font-weight: bold;'>{{gameResponse.cont}}</h5>
+            <br><br>
+          </div>
         </div>
       </form>
+    </div>
+    <div class='col s12 m12' id='mobileScoreContainer'>
+      <div class='container-fluid' id='playerScoreContainer'>
+        <h3 style='text-decoration: underline;'>Player Details</h3>
+        <div class='container-fluid'>
+          <h4>Player: {{player.fullName}}</h4>
+          <div class='container-fluid' id='gameRecords'>
+            <h5>Games Played: <span id='gamesPlayedTally'>{{player.score.gamesPlayed}}</span></h5>
+            <h5>Games Won: <span id='gamesWonTally'>{{player.score.gamesWon}}</span></h5>
+          </div>
+          <div class='container-fluid' id='historyBtnContainer'>
+            <button class='btn waves-effect waves-teal grey lighten-3 black-text'>Score History</button>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </div>

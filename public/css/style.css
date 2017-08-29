@@ -104,7 +104,7 @@ body {
             }
 
             #gameRecords {
-              width: 50%;
+              width: 60%;
               margin-left: 1.5em;
             }
 
@@ -122,6 +122,15 @@ body {
                   align-items: flex-start;
                   justify-content: center;
                 }
+
+        #fruitContainerHidden {
+          margin-left: auto;
+          margin-right: auto;
+          display: none;
+          align-items: flex-start;
+          justify-content: space-between;
+          visibility: hidden;
+        }
 
         #fruitContainer {
           margin-left: auto;
@@ -161,14 +170,37 @@ body {
                     }
 
         #submissionContainer {
-          margin-top: 2.6em;
-          padding-bottom: .75em;
+          margin-top: 3em;
+          padding-bottom: .7em;
           text-align: center;
         }
 
             #submissionContainer>p {
               text-align: center;
             }
+
+        .modal-content {
+          background-size: cover;
+          padding-bottom: 10em;
+        }
+
+        #mobileScoreContainer {
+          display: none;
+        }
+
+  @media screen and (max-width: 992px) {
+    #desktopScoreContainer {
+      display: none;
+    }
+
+    #mobileScoreContainer {
+      display: block;
+    }
+
+        #gameRecords {
+          width: 70%;
+        }
+  }
 
 footer {
   width: 100%;

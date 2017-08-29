@@ -3,7 +3,7 @@ require('./config');
 const authUser = require('../models/authenticatedUsers.js')
 
 var devAdmin = new authUser({
-  fullName: 'Justin Samuels',
+  fullName: 'Kyle',
   email: 'fldjfkls@gmail.com',
   myId: '1234567890',
   score: {
