@@ -34,7 +34,7 @@
                 if(response.data.data === 'invalid') {
                   $indexInput.addClass(response.data.data)
                 } else {
-                  $('#hiddenATag')[0].href = `https://thawing-tor-23519.herokuapp.com/#!/game?profileId=${response.data.data}`;
+                  $('#hiddenATag')[0].href = `#!/game?profileId=${response.data.data}`;
                   console.log($('#hiddenATag')[0])
                   $('#hiddenATag')[0].click()
                 }
