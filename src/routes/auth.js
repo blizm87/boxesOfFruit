@@ -124,8 +124,8 @@ router.get('/linkedin/callback', (req, res1, next) => {
       console.log('I RETRIEVE DATA HERE')
       // const userInfo = JSON.parse(body2);
       // console.log('I AM THE USERINFO: ');
-      console.log(body2);
-      console.log(body2);
+      console.log(err)
+      console.log(err)
       console.log(response)
       console.log(response)
 
