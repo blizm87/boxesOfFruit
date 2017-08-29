@@ -35,8 +35,8 @@
                   $indexInput.addClass(response.data.data)
                 } else {
                   $('#hiddenATag').href = `https://thawing-tor-23519.herokuapp.com/#!/game?profileId=${response.data.data}`;
-                  console.log($('#hiddenATag'))
-                  $('#hiddenATag').click()
+                  console.log($('#hiddenATag')[0])
+                  $('#hiddenATag')[0].click()
                 }
               }, function(err){
                 console.log(err)
