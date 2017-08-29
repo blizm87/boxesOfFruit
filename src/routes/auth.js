@@ -100,8 +100,8 @@ router.get('/linkedin/callback', (req, res1, next) => {
   let url = 'https://www.linkedin.com/oauth/v2/accessToken';
   const form = {
     code,
-    linked_client_id,
-    linked_client_secret,
+    linkedin_client_id,
+    linkedin_client_secret,
     redirect_uri,
     grant_type: 'authorization_code'
   }
