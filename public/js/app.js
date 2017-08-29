@@ -35,7 +35,7 @@
                   $indexInput.addClass(response.data.data)
                 } else {
                   $http
-                    .get(`https://thawing-tor-23519.herokuapp.com/#!/game?profileId=${response.data.data}`)
+                    .get(`#!/game?profileId=${response.data.data}`)
                     .then(function(resp){
 
                     }, function(errr){
