@@ -126,7 +126,7 @@ router.get('/linkedin/callback', (req, res1, next) => {
       'Authorization' : `Bearer ${access_token}`,
       headers: {
         "Accept": "application/json",
-        "Content-type": "application/json"
+        "Content-type": "application/json",
         'x-li-format': 'json',
       }
     }
