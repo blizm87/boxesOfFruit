@@ -107,18 +107,21 @@ router.get('/linkedin/callback', (req, res1, next) => {
     client_id,
     client_secret,
     redirect_uri,
-    grant_type: 'authorization_code'
+    grant_type: 'authorization_code',
+    headers: {
+      'Content-Type': 'application/json'
+    }
   }
   request.post(url, {form}, (err, resp, body) => {
     console.log('I GET AN ACCESS TOKEN HERE')
     console.log(body)
     const data = JSON.parse(body);
-    url = 'https://api.linkedin.com/v1/people/~';
+    url = 'https://api.linkedin.com/v1/people/~?format=json';
     const access_token = data.access_token;
     const options = {
       method: 'GET',
       url,
-      connection: 'Keep-Alive',
+      Connection: 'Keep-Alive',
       'Authorization' : `Bearer ${body.access_token}`
     }
     request(options, (err, response, body2) => {
