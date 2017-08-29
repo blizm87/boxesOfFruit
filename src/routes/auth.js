@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 const request = require('request');
 const googleAuthUser = require('../models/authenticatedUsers.js');
-
+const validator = require('mailgun-email-validation');
 
 const client_id = process.env.GOOGLE_CLIENT_ID;
 const client_secret = process.env.GOOGLE_CLIENT_SECRET;
+const mailboxlayer_apikey = process.env.MAILBOXLAYER_APIKEY;
 
 // GOOGLE AUTHENTICATION
 router.get('/google', (req, res, next) => {
@@ -20,7 +21,7 @@ router.get('/google', (req, res, next) => {
   res.redirect(url + '?' + queryParams);
 });
 
-router.get('/google/callback', (req, res, next) => {
+router.get('/google/callback', (req, res1, next) => {
   if(process.env.NODE_ENV === 'production') {
     var redirect_uri = 'https://nameless-brook-20005.herokuapp.com/auth/google/callback'
   } else {
@@ -53,7 +54,6 @@ router.get('/google/callback', (req, res, next) => {
           let newUser = new googleAuthUser({
             fullName: userInfo.displayName,
             email: userInfo.emails[0].value,
-            myId: userInfo.id,
             score: {
               gamesPlayed: 0,
               gamesWon: 0,
@@ -66,14 +66,62 @@ router.get('/google/callback', (req, res, next) => {
       }).then( () => {
           googleAuthUser.findOne( {email: userInfo.emails[0].value}, (err, accountUser) => {
             if(process.env.NODE_ENV === 'production') {
-              res.redirect(`https://afternoon-cliffs-80859.herokuapp.com/#!/game`);
+              res1.redirect(`https://afternoon-cliffs-80859.herokuapp.com/#!/game`);
             } else {
-              res.redirect(`http://127.0.0.1:3000/#!/game?profileId=${accountUser._id}`);
+              res1.redirect(`http://127.0.0.1:3000/#!/game?profileId=${accountUser._id}`);
             }
           })
       });
     });
   });
+});
+
+router.get('/nooauth', (req, res2, next) => {
+  console.log(req.query.email)
+  let mailboxLayerUrl = `http://apilayer.net/api/check?access_key=${mailboxlayer_apikey}&email=${req.query.email}`;
+  request.get(mailboxLayerUrl, (err, resp2, body3) => {
+    let eResults = body3.split(',')
+    let keyPair = eResults[6]
+    let finalKeyPair = keyPair.split(':');
+
+    console.log(JSON.parse(body3))
+    console.log(finalKeyPair)
+
+    if(finalKeyPair[1] === 'false') {
+      console.log('EMAIL WAS FALSE')
+      res.json({data: 'invalid'})
+    } else if(finalKeyPair[1] === 'true') {
+        console.log('EMAIL WAS TRUE')
+        googleAuthUser.findOne( {email: req.query.email}, (err, user) => {
+          if(user === null) {
+            console.log('CREATING NEW USER')
+            let newUser = new googleAuthUser({
+              fullName: req.body.email,
+              email: req.body.email,
+              score: {
+                gamesPlayed: 0,
+                gamesWon: 0,
+                gameRecords: []
+              }
+            })
+
+            newUser.save();
+          }
+        }).then( () => {
+            googleAuthUser.findOne( {email: req.query.email}, (err, accountUser) => {
+              console.log('LOOKING FOR ACCOUNT')
+              if(process.env.NODE_ENV === 'production') {
+                res2.redirect(`https://afternoon-cliffs-80859.herokuapp.com/#!/game`);
+              } else {
+                console.log('FOUND ACCOUNT')
+                console.log(accountUser._id)
+                // res2.statusCode = 302;
+                res2.redirect(`http://127.0.0.1:3000/#!/game?profileId=${accountUser._id}`);
+              }
+            })
+        });
+    }
+  })
 });
 
 module.exports = router;

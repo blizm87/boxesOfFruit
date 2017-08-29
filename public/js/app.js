@@ -19,6 +19,29 @@
     function indexCtrl($scope, $http, $timeout, $route){
       console.log('I am the index controller')
 
+      let $indexForm = $('#indexForm');
+      let $indexInput = $('#indexEmail');
+
+      $indexForm.on('click', function(ev) {
+        ev.preventDefault();
+        if(ev.target.id === 'indexSubmitBtn'){
+          if($indexInput.val() !== ''){
+            $http
+              .get(`http://127.0.0.1:3000/auth/nooauth?email=${$indexInput.val()}`)
+              .then(function(response){
+                console.log(response.data.data)
+                if(response.data.data === 'invalid') {
+                  $indexInput.addClass(response.data.data)
+                }
+              }, function(err){
+                console.log(err)
+              })
+          } else {
+            $indexInput.addClass('invalid');
+          }
+        }
+      })
+
     } //  END INDEXCTRL -  CONTROLLER
 
     function gameCtrl($scope, $http, $timeout, $route){
@@ -40,7 +63,7 @@
       let bucketArr = [];
       let bucketHintTry = 0;
       let $form = $('form');
-      let $emailInput = $('#email');
+      let $emailInput = $('#gameEmail');
       let formNum = 0;
 
       $(document).ready(function(){
@@ -212,7 +235,7 @@
     // HANDLE FORM SUBMISSION
       $form.on('click', function(ev) {
         ev.preventDefault();
-        if(ev.target.id === 'submitBtn'){
+        if(ev.target.id === 'gameSubmitBtn'){
           if(bucket[0].children.length !== 0 && bucket[1].children.length !== 0 && bucket[2].children.length !== 0) {
             if($emailInput.val() === $scope.player.email){
               let submission = {
@@ -271,8 +294,7 @@
         })
         .when('/game', {
           templateUrl: '../partials/game.html',
-          controller: 'gameCtrl',
-          reload: true
+          controller: 'gameCtrl'
         })
         .otherwise({
           rediretTo: '/',

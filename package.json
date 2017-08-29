@@ -24,6 +24,7 @@
   "homepage": "https://github.com/blizm87/boxesOfFruit#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
     "dotenv": "^4.0.0",
     "express": "^4.15.4",
     "method-override": "^2.3.9",
