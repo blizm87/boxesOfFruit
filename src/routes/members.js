@@ -37,7 +37,7 @@ router.post('/game', (req, res, next) => {
       let gameRecordResults = {
         submittedAnswers: [req.body.bucketOne.playerAnswer, req.body.bucketTwo.playerAnswer, req.body.bucketThree.playerAnswer],
         correctAnswers: [req.body.bucketOne.value, req.body.bucketTwo.value, req.body.bucketThree.value],
-        result: 'Lose'
+        result: 'Loss'
       }
       profile.score.gameRecords.push(gameRecordResults);
       profile.score.gamesPlayed += 1;
