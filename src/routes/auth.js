@@ -201,14 +201,31 @@ router.get('/nooauth', (req, res2, next) => {
         }).then( () => {
             googleAuthUser.findOne( {email: req.query.email}, (err, accountUser) => {
               console.log('LOOKING FOR ACCOUNT')
-              if(process.env.NODE_ENV === 'production') {
-                res2.json({data: accountUser._id})
-                // res2.redirect(`https://thawing-tor-23519.herokuapp.com/#!/game?profileId=${accountUser._id}`);
+              if(accountUser._id !== null) {
+                if(process.env.NODE_ENV === 'production') {
+                  res2.json({data: accountUser._id})
+                  // res2.redirect(`https://thawing-tor-23519.herokuapp.com/#!/game?profileId=${accountUser._id}`);
+                } else {
+                  console.log('FOUND ACCOUNT')
+                  console.log(accountUser._id)
+                  res2.json({data: accountUser._id})
+                  // res2.redirect(`http://127.0.0.1:3000/#!/game?profileId=${accountUser._id}`);
+                }
               } else {
-                console.log('FOUND ACCOUNT')
-                console.log(accountUser._id)
-                res2.json({data: accountUser._id})
-                // res2.redirect(`http://127.0.0.1:3000/#!/game?profileId=${accountUser._id}`);
+                  googleAuthUser.findOne( {email: req.query.email}, (err, accountUser2) => {
+
+                    if(accountUser._id2 !== null) {
+                      if(process.env.NODE_ENV === 'production') {
+                        res2.json({data: accountUser2._id})
+                      } else {
+                        console.log('FOUND ACCOUNT')
+                        console.log(accountUser._id)
+                        res2.json({data: accountUser2._id})
+                      }
+                    } else {
+                      console.log('OBJECT IS STILL NULL')
+                    }
+                  });
               }
             })
         });
