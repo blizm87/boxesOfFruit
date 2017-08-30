@@ -219,7 +219,7 @@ router.get('/nooauth', (req, res2, next) => {
                         res2.json({data: accountUser2._id})
                       } else {
                         console.log('FOUND ACCOUNT')
-                        console.log(accountUser._id)
+                        console.log(accountUser2._id)
                         res2.json({data: accountUser2._id})
                       }
                     } else {
