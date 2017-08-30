@@ -187,8 +187,8 @@ router.get('/nooauth', (req, res2, next) => {
           if(user === null) {
             console.log('CREATING NEW USER')
             let newUser = new googleAuthUser({
-              fullName: req.body.email,
-              email: req.body.email,
+              fullName: req.query.email,
+              email: req.query.email,
               score: {
                 gamesPlayed: 0,
                 gamesWon: 0,
