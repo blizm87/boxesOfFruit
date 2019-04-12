@@ -89,8 +89,11 @@
         .get(`https://thawing-tor-23519.herokuapp.com/members?profileId=${paramRes}`)
         // .get(`http://127.0.0.1:3000/members?profileId=${paramRes}`)
         .then(function(response){
+          console.log("THIS IS A TEST DATABASE TEST");
+          console.log(response);
           $scope.player = response.data.data;
           $scope.playerRecordArr = [];
+          console.log($scope.player);
           for(var i = response.data.data.score.gameRecords.length - 1; i >= 0; i--) {
             $scope.playerRecordArr.push(response.data.data.score.gameRecords[i]);
           }
