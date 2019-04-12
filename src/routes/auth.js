@@ -48,8 +48,8 @@ router.get('/google/callback', (req, res1, next) => {
     }
     request(options, (err, response, body2) => {
       const userInfo = JSON.parse(body2);
-      // console.log('I AM THE USERINFO: ');
-      // console.log(userInfo);
+      console.log('I AM THE USERINFO: ');
+      console.log(userInfo);
       googleAuthUser.findOne( {email: userInfo.emails[0].value}, (err, user) => {
         if(user === null) {
           let newUser = new googleAuthUser({
