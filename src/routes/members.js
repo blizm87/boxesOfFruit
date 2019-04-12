@@ -23,7 +23,7 @@ router.post('/game', (req, res, next) => {
           correctAnswers: [req.body.bucketOne.value, req.body.bucketTwo.value, req.body.bucketThree.value],
           result: 'Win'
         }
-        profile.score.gameRecords.push(gameRecordResults);
+        profile.score.gameRecords.pushAll(gameRecordResults);
         profile.score.gamesPlayed += 1;
         profile.score.gamesWon += 1;
         profile.save();
@@ -39,7 +39,7 @@ router.post('/game', (req, res, next) => {
         correctAnswers: [req.body.bucketOne.value, req.body.bucketTwo.value, req.body.bucketThree.value],
         result: 'Loss'
       }
-      profile.score.gameRecords.push(gameRecordResults);
+      profile.score.gameRecords.pushAll(gameRecordResults);
       profile.score.gamesPlayed += 1;
 
       profile.save();
