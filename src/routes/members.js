@@ -23,10 +23,10 @@ router.post('/game', (req, res, next) => {
           correctAnswers: [req.body.bucketOne.value, req.body.bucketTwo.value, req.body.bucketThree.value],
           result: 'Win'
         }
-        // profile.score.gameRecords.push(gameRecordResults);
+        profile.score.gameRecords.push(gameRecordResults);
         profile.score.gamesPlayed += 1;
         profile.score.gamesWon += 1;
-        profile.save();
+        profile.save("done");
         res.json({data: {
           header: `GREAT JOB, ${profile.fullName}`,
           cont: 'You were right!!! You Won!!!',
@@ -39,10 +39,10 @@ router.post('/game', (req, res, next) => {
         correctAnswers: [req.body.bucketOne.value, req.body.bucketTwo.value, req.body.bucketThree.value],
         result: 'Loss'
       }
-      // profile.score.gameRecords.push(gameRecordResults);
+      profile.score.gameRecords.push(gameRecordResults);
       profile.score.gamesPlayed += 1;
 
-      profile.save();
+      profile.save("done");
       res.json({data: {
         header: 'TOO BAD, WHOEVER YOU ARE',
         cont: 'You were wrong!!! Try Again!!!',
